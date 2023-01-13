@@ -16,7 +16,21 @@ fn main() {
     }
 
     println!("{:?}", vec);
+
+    let median = calculate_median(&vec);
+
+    println!("the median of the vector is: {}", median);
 }
 
-
+fn calculate_median(vec: &Vec<i32>) -> f64 {
+    let mut vec = vec.clone();
+    vec.sort();
+    let len = vec.len();
+    if len % 2 == 0 {
+        let mid = len /2;
+        (vec[mid] as f64 + vec[mid - 1] as f64) / 2.0
+    } else {
+        vec[len / 2] as f64
+    }
+}
 
