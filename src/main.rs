@@ -22,8 +22,8 @@ fn main() {
     // prints the mode
     println!("The mode of the vector is: {}", mode);
 
-    let (median, mode) = calculate_median_mode(&mut vec);
-    println!("The mode of the vector is: {}, and the Median of the vector is {}", mode, median)
+    // let (median, mode) = calculate_median_mode(&mut vec);
+    // println!("The mode of the vector is: {}, and the Median of the vector is {}", mode, median)
 }
 
 // function that borrows the vector and calculates the median
@@ -64,7 +64,9 @@ fn calculate_mode(vec: &Vec<i32>) -> i32 {
     }
     mode
 }
-// trying to figure out how to get this all into one 
+// trying to figure out how to get this all into one function but struggling with mismatched types
+// When I've solved the mismatched types issue i then run into an issue with returning the mode
+// where I receive some sort of error about referencing / dereferncing a value
 // fn calculate_median_mode(vec: &mut Vec<i32>) -> (f64, Vec<i32>) {
 //     vec.sort();
 //     let len = vec.len();
