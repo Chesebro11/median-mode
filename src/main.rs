@@ -21,6 +21,9 @@ fn main() {
     let mode = calculate_mode(&vec);
     // prints the mode
     println!("The mode of the vector is: {}", mode);
+
+    let (median, mode) = calculate_median_mode(&mut vec);
+    println!("The mode of the vector is: {}, and the Median of the vector is {}", mode, median)
 }
 
 // function that borrows the vector and calculates the median
@@ -61,4 +64,33 @@ fn calculate_mode(vec: &Vec<i32>) -> i32 {
     }
     mode
 }
+// trying to figure out how to get this all into one 
+// fn calculate_median_mode(vec: &mut Vec<i32>) -> (f64, Vec<i32>) {
+//     vec.sort();
+//     let len = vec.len();
 
+//     let mut map = HashMap::new();
+//     let mut median = 0.0;
+//     let mut mode = Vec::new();
+//     let mut max_count = 0;
+
+//     for i in vec {
+//         let count = map.entry(i).or_insert(0);
+//         *count += 1;
+
+//         if *count > max_count {
+//             max_count = *count;
+//             mode.clear();
+//             mode.push(i);
+//         } else if *count == max_count {
+//             mode.push(i);
+//         }
+//     }
+//     if len % 2 == 0 {
+//         let mid = len / 2;
+//         median = (vec[mid] as f64 + vec[mid - 1] as f64) / 2.0;
+//     } else {
+//         median = vec[len / 2] as f64;
+//     }
+//     (median, mode)
+// }
