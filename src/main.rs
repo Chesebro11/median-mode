@@ -18,9 +18,9 @@ fn main() {
     // prints the median
     println!("the median of the vector is: {}", median);
     // passes the vector to calculate_mode function
-    let mode = calculate_mode(&vec);
+    let mode = calculate_mode(vec);
     // prints the mode
-    println!("The mode of the vector is: {}", mode);
+    println!("The mode of the vector is: {:?}", mode);
 
     // let (median, mode) = calculate_median_mode(&mut vec);
     // println!("The mode of the vector is: {}, and the Median of the vector is {}", mode, median)
@@ -43,27 +43,26 @@ fn calculate_median(vec: &Vec<i32>) -> f64 {
 
 // this calculates the mode.. sort of. It doesn't keep track of all of the most occuring integers
 // This should be written to be able to keep track if theres 1, 2, 3... etc. numbers occurring the most
-fn calculate_mode(vec: &Vec<i32>) -> i32 {
+fn calculate_mode(vec: Vec<i32>) -> Vec<i32> {
     let mut map = HashMap::new();
+    let mut mode = Vec::new();
+    let mut max_count = 0;
 
-    for i in vec {
-        let count = map.entry(i).or_insert(0);
-        *count += 1;
-    }
+        for i in vec {
+            let count = map.entry(i).or_insert(0);
+            *count += 1;
 
-    let mut vec: Vec<i32> = vec.clone();
-        vec.sort();
-
-    let mut max_value = 0;
-    let mut mode = 0;
-    for (i, count) in &map {
-        if count > &max_value {
-            max_value = *count;
-            mode = **i;
+            if *count > max_count {
+                max_count = *count;
+                mode.clear();
+                mode.push(i);
+            } else if *count == max_count {
+                mode.push(i);
+            }
         }
+        mode
     }
-    mode
-}
+    
 // trying to figure out how to get this all into one function but struggling with mismatched types
 // When I've solved the mismatched types issue i then run into an issue with returning the mode
 // where I receive some sort of error about referencing / dereferncing a value
@@ -80,19 +79,19 @@ fn calculate_mode(vec: &Vec<i32>) -> i32 {
 //         let count = map.entry(i).or_insert(0);
 //         *count += 1;
 
-//         if *count > max_count {
-//             max_count = *count;
-//             mode.clear();
-//             mode.push(i);
-//         } else if *count == max_count {
-//             mode.push(i);
-//         }
-//     }
-//     if len % 2 == 0 {
-//         let mid = len / 2;
-//         median = (vec[mid] as f64 + vec[mid - 1] as f64) / 2.0;
-//     } else {
-//         median = vec[len / 2] as f64;
-//     }
+    //     if *count > max_count {
+    //         max_count = *count;
+    //         mode.clear();
+    //         mode.push(i);
+    //     } else if *count == max_count {
+    //         mode.push(i);
+    //     }
+    // }
+    // if len % 2 == 0 {
+    //     let mid = len / 2;
+    //     median = (vec[mid] as f64 + vec[mid - 1] as f64) / 2.0;
+    // } else {
+    //     median = vec[len / 2] as f64;
+    // }
 //     (median, mode)
 // }
